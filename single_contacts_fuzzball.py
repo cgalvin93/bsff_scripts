@@ -79,20 +79,7 @@ for file in pdbfiles:
             print('contact found for residue '+ str(c)+' in file '+str(file)+'  at distance: '+str(min(distances)))
             for i in current_residue_lines:
                 fuzzball_lines.append(i)
-'''
-    for line in atomlines:
-        res_atom_coords=float(line[31:38].strip()),float(line[39:46].strip()),float(line[47:56].strip())
-        for atom in fragment_coords:
-            d=dist(res_atom_coords,atom)
-            if d<4.0:
-                resnum=only_numerics(line[22:29])
-                print('residue '+str(resnum)+' from file '+str(file)+' has contact atom at distance: '+str(d))
-                for a,b,c in residue_indices:
-                    if c==resnum:
-                        for i in atomlines[a:b]:
-                            fuzzball_lines.append(i)
-                break
-'''
+
 
 n_files=str(len(os.listdir(os.getcwd())))
 print(n_files+' files parsed for contacts')
