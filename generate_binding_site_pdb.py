@@ -41,7 +41,7 @@ for line in fuzzball_file.readlines():
                 output_pdb.append(line)
 fuzzball_file.close()
 
-#output pdb 
+#output pdb
 pdb_filename=sys.argv[1]+'_row_'+sys.argv[3]+'.pdb'
 f=open(pdb_filename,'w')
 for i in output_pdb:

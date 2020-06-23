@@ -2,7 +2,9 @@
 #returns an analagous csv with binding sites containing at least one polar residue
 #also returns statistics on binding site composition, which at this point
 #only includes a bar graph showing the amino acid distribution for the binding sites
-#USAGE: python ~/Desktop/prj/bsff/bsff_scripts/parse_binding_sites.py ~/Desktop/Files_IB2/IB2_0052-iter_0-fuzz_0-3_residue_solutions.csv ~/Desktop/Files_IB2/IB2_0052-iter_0-fuzz_0.pdb testIB2
+#USAGE: python parse_binding_sites.py path/to/binding_site_solns.csv path/to/fuzzball.pdb outfilename
+#ex: time python ~/Desktop/prj/bsff/bsff_scripts/parse_binding_sites.py ~/Desktop/Files_IB2/IB2_0052-iter_0-fuzz_0-3_residue_solutions.csv ~/Desktop/Files_IB2/IB2_0052-iter_0-fuzz_0.pdb testIB2
+#ex: time python ~/Desktop/prj/bsff/bsff_scripts/parse_binding_sites.py ~/Desktop/Files_DIF/DIF_0006-iter_0-fuzz_0-3_residue_solutions.csv ~/Desktop/Files_DIF/DIF_0006-iter_0-fuzz_0.pdb testDIF
 
 import pandas as pd
 import sys
@@ -30,7 +32,7 @@ fuzzball_residues=list(set(fuzzball_residues))
 
 #function to filter binding sites on given criteria. at the moment only criteria
 #is includes polar residue
-polar_list=['SER','THR','CYS','ASN','GLN','TYR','ASP','GLU','HIS'] #including charged res and his
+polar_list=['SER','THR','CYS','ASN','GLN','TYR','ASP','GLU','HIS','ARG','LYS'] #including charged res and his
 def filter_binding_sites(bs_indices, fuzzball_pdb_list):
     n_polar=0
     for bs_residue in bs_indices: #bs indices should be the list of n res numbers
@@ -48,7 +50,6 @@ rows_list=[] #stores info for rows corresponding to binding sites that pass filt
 row_count=0
 for x in list(bsdf['Residue_indicies']):
     bs_res_indices=[only_numerics(i) for i in x.split(',')]
-    print('checking residues '+str(bs_res_indices)+' for polar contacts')
     if filter_binding_sites(bs_res_indices,fuzzball_residues)==True:
         d={}
         d['Residue_indicies']=bsdf.iloc[row_count][0]
@@ -60,7 +61,6 @@ for x in list(bsdf['Residue_indicies']):
 
 #output binding sites containing polar residues to csv
 output_df=pd.DataFrame(rows_list) #construct dataframe from accepted rows
-print(output_df)
 output_df.to_csv(sys.argv[3]+'.csv')
 n_filtered=output_df.shape[0]
 print(str(n_filtered)+' binding sites found containing polar contact')
