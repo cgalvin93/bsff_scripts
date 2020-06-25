@@ -4,9 +4,12 @@
 #returns a single pdb file containing all residues with at least one atom
 #within 4.0 angstroms of the ligand fragment
 #cd desktop/prj/bsff/compounds/pac/Transformed_Aligned_PDBs/Fragment_1
+
 import sys
 import math
 import os
+import pandas as pd
+import collections
 
 #get the names of the pdb files in working directory
 pdbfiles=[file for file in os.listdir(os.getcwd()) if file[-3:]=='pdb']
@@ -19,7 +22,7 @@ f=open(pdbfiles[0],'r')
 for line in f.readlines():
     if line[0:6]=='HETATM':
         fuzzball_lines.append(line)
-        x=float(line[31:38].strip()) ;y=float(line[39:46].strip()) ;z=float(line[47:55].strip())
+        x=float(line[30:38].strip()) ;y=float(line[38:46].strip()) ;z=float(line[46:54].strip())
         fragment_coords.append((x,y,z))
 f.close()
 
