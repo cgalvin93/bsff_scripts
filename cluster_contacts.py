@@ -7,7 +7,7 @@
 #clustering is done based off of sidechain rmsd being <1.5 angs between 2 res
 #
 # USAGE: time python cluster_contacts.py path/to/contact_fuzzball.pdb frag_3letter_ID
-# for me: time ipython ~/Desktop/prj/bsff/bsff_scripts/cluster_contacts.py fragment2_contact_fuzzball.pdb arl
+# for me: time ipython ~/Desktop/prj/bsff/bsff_scripts/cluster_contacts.py fragment1_contact_fuzzball.pdb cx8
 
 #imports
 import sys
