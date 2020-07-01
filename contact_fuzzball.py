@@ -1,9 +1,11 @@
-#Usage: time ipython ~/Desktop/prj/bsff/bsff_scripts/scf2.py fragment2_contact_fuzzball.pdb
 #intended to be run on the pdb files generated in the fragment_x directories
 #within Transformed_Aligned_pdbs dir from the 'align'command in BSFF protocol
 #returns a single pdb file containing all residues with at least one atom
 #within 4.0 angstroms of the ligand fragment
+#USAGE: time ipython path/to/contact_fuzzball.py fuzzball_filename.pdb
+
 #cd desktop/prj/bsff/compounds/pac/Transformed_Aligned_PDBs/Fragment_2
+#Usage: time ipython ~/Desktop/prj/bsff/bsff_scripts/contact_fuzzball.py fragment1_contact_fuzzball.pdb
 
 import sys
 import math
@@ -143,6 +145,7 @@ def filters(fuzzball_lines,fuzzball_residue_indices):
 #the filters on their first go even though they shouldnt
 #so hopefully at the very least I can trust that these remaining residues do
 #indeed satisfy the desired criteria
+print('starting to filter contacts...')
 for i in range(100):
     s,n = filters(fuzzball_lines,fuzzball_residue_indices)
     print(s,n)
