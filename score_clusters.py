@@ -61,7 +61,8 @@ for file in pdbfiles:
     cluster_data.append(cluster_dict)
 df=pd.DataFrame(cluster_data)
 
-
+####################
+#alright now I wanna figure out how to look at hydrogen bond energies if they exist 
 hbs=pyrosetta.rosetta.core.scoring.hbonds.HBondSet(p,True)
 list(hbs.hbonds())
 hbs.nhbonds()
